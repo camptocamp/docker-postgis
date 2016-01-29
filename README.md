@@ -1,8 +1,11 @@
-#Postgis 2.1 Docker container
+#Postgis 2.1/2.2 Docker container
+
+The tags are named after the PostgreSQL versions; PostgreSQL 9.4 is using
+Postgis 2.1, 9.5 is using 2.2.
 
 Here is a sample Dockerfile for using it:
 ```
-FROM camptocamp/postgis
+FROM camptocamp/postgis:9.5
 MAINTAINER Camptocamp "info@camptocamp.com"
 
 ENV POSTGRES_USER www-data
