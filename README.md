@@ -1,4 +1,4 @@
-#Postgis 2.1/2.2 Docker container
+# Postgis 2.1/2.2 Docker container
 
 The tags are named after the PostgreSQL versions; PostgreSQL 9.4 is using
 Postgis 2.1, 9.5 is using 2.2.
