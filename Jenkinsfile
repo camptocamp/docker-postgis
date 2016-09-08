@@ -1,14 +1,11 @@
 node {
-  /* TODO: split versions properly
   stage 'Checkout'
   checkout scm
 
-  versions = sh (
+  def versions = sh (
     script: 'find * -maxdepth 0 -type d',
     returnStdout: true
   ).trim().split()
-  */
-  def versions = [ '9.4', '9.5' ]
 
   stage 'Build Docker images'
   def branches = [:]
