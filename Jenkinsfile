@@ -5,7 +5,7 @@ node {
   def versions = sh (
     script: 'find * -maxdepth 0 -type d',
     returnStdout: true
-  ).trim().split()
+  ).trim().tokenize()
 
   stage 'Build Docker images'
   def branches = [:]
