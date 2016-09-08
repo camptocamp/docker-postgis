@@ -17,6 +17,11 @@ node {
 
         // Use docker.build() ?
         sh "docker build -t camptocamp/postgis:${v} ${v}"
+
+        docker.withRegistry('', 'dockerhub') {
+          // Use push() ?
+          sh "docker push camptocamp/postgis:${v}"
+        }
       }
     }
   }
