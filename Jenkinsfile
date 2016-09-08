@@ -14,6 +14,7 @@ node {
   for (int i=0; i<versions.size(); ++i) {
     def v = versions[i]
     branches[v] = {
+      stage "Build Docker image for ${v}"
       node('docker') {
         checkout scm
 
