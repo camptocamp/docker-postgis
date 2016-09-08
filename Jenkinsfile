@@ -12,8 +12,8 @@ node {
 
   def branches = [:]
   for (int i=0; i<versions.size(); ++i) {
-    def v = versions[$i]
-    branches[$v] = {
+    def v = versions[i]
+    branches[v] = {
       node('docker') {
         checkout scm
 
