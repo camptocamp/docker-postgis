@@ -3,7 +3,7 @@ node('docker') {
   checkout scm
 
   versions = sh (
-    script: 'find * -maxdepth 0 -type d'
+    script: 'find * -maxdepth 0 -type d',
     returnStdout: true
   ).trim().split()
 
