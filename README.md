@@ -1,7 +1,10 @@
-# Postgis 2.1/2.2 Docker container
+# Postgis Docker container
 
-The tags are named after the PostgreSQL versions; PostgreSQL 9.4 is using
-Postgis 2.1, 9.5 is using 2.2.
+The tags are named after the PostgreSQL versions:
+
+* PostgreSQL 9.4 is using PostGIS 2.1,
+* PostgreSQL 9.5 is using PostGIS 2.2,
+* PostgreSQL 9.6 is using PostGIS 2.3.
 
 Here is a sample Dockerfile for using it:
 ```
@@ -16,6 +19,6 @@ Name your SQL files starting with a 2 digit number prefix starting from `01_`
 to ensure your scripts are started after the ones from the
 `camptocamp/postgis` image.
 
-See the postgres image documentation for more details:
+See the PostgreSQL image documentation for more details:
 https://hub.docker.com/_/postgres/
 
