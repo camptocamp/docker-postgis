@@ -1,6 +1,7 @@
-#!/usr/bin/env groovy
+#!groovy
+@Library('c2c-pipeline-library') import static com.camptocamp.utils.*
 
-node {
+dockerBuild {
   stage('Checkout') {
     checkout scm
   }
