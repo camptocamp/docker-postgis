@@ -1,6 +1,10 @@
 #!groovy
 @Library('c2c-pipeline-library') import static com.camptocamp.utils.*
 
+selectNodes {
+    it.kernel == 'Linux' && (it.memorysize_mb as Float) > 2500
+}
+
 dockerBuild {
   stage('Checkout') {
     checkout scm
@@ -13,24 +17,25 @@ dockerBuild {
 
   stage('Build Docker images') {
 
-    def branches = [:]
-    for (int i=0; i<versions.size(); ++i) {
-      def v = versions[i]
-      branches["build-docker-${v}"] = {
-        node('docker') {
+    withCredentials([[$class          : 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub',
+                    usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+      sh 'docker login -u "$USERNAME" -p "$PASSWORD"'
+
+      def branches = [:]
+      for (int i=0; i<versions.size(); ++i) {
+        def v = versions[i]
+        branches["build-docker-${v}"] = {
           checkout scm
 
-          // Use docker.build() ?
+          sh "docker pull postgres:${v}"
           sh "docker build -t camptocamp/postgis:${v} ${v}"
 
-          docker.withRegistry('', 'dockerhub') {
-            // Use push() ?
-            sh "docker push camptocamp/postgis:${v}"
+          if (env.BRANCH_NAME == 'master') {
+            docker.image("camptocamp/postgis:${v}").push()
           }
         }
       }
+      parallel branches
     }
-
-    parallel branches
   }
 }
