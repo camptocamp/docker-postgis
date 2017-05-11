@@ -19,14 +19,13 @@ dockerBuild {
 
     withCredentials([[$class          : 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub',
                     usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+      checkout scm
       sh 'docker login -u "$USERNAME" -p "$PASSWORD"'
 
       def branches = [:]
       for (int i=0; i<versions.size(); ++i) {
         def v = versions[i]
         branches["build-docker-${v}"] = {
-          checkout scm
-
           sh "docker pull postgres:${v}"
           sh "docker build -t camptocamp/postgis:${v} ${v}"
 
