@@ -1,3 +1,5 @@
+# This image is deprecated, pleas use https://hub.docker.com/r/camptocamp/postgres/ instead
+
 # Postgis Docker container
 
 The tags are named after the PostgreSQL versions:
