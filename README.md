@@ -1,4 +1,4 @@
-# This image is deprecated, pleas use https://hub.docker.com/r/camptocamp/postgres/ instead
+# This image is deprecated, please use https://hub.docker.com/r/camptocamp/postgres/ instead
 
 # Postgis Docker container
 
